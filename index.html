@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic AI Career Advisor | Project Showcase</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; }
+        .gradient-text {
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        /* Custom animations for the infographic arrows */
+        @keyframes pulse-light {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; filter: drop-shadow(0 0 8px #38bdf8); }
+        }
+        .flow-arrow { animation: pulse-light 2s infinite; }
+    </style>
+</head>
+<body class="antialiased selection:bg-sky-500 selection:text-white">
+
+    <!-- HERO SECTION -->
+    <header class="relative overflow-hidden pt-24 pb-16 px-6 lg:px-8 max-w-7xl mx-auto text-center">
+        <div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-900/40 via-[#0f172a] to-[#0f172a]"></div>
+        
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-900/50 border border-sky-500/30 text-sky-300 text-sm font-medium mb-6">
+            <i class="fa-solid fa-microchip"></i> Powered by Local RTX 5090 & Qwen 3.6
+        </div>
+        
+        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
+            Ο πρώτος <span class="gradient-text">Agentic AI</span><br>Σύμβουλος Σταδιοδρομίας
+        </h1>
+        
+        <p class="mt-4 text-xl text-slate-400 max-w-3xl mx-auto mb-10">
+            Ένα πειραματικό σύστημα τεχνητής νοημοσύνης διπλού κόμβου (Dual-LLM), που παρακάμπτει τα συμβατικά frameworks (όπως το LangGraph) χρησιμοποιώντας δυναμικό <strong>Prompt Injection</strong> και ψυχομετρικό <strong>State Tracking</strong> σε πραγματικό χρόνο.
+        </p>
+
+        <div class="flex justify-center gap-4">
+            <a href="#architecture" class="bg-sky-500 hover:bg-sky-400 text-slate-900 font-bold py-3 px-6 rounded-lg transition-all shadow-[0_0_15px_rgba(56,189,248,0.4)]">
+                Δείτε την Αρχιτεκτονική
+            </a>
+            <a href="https://github.com/theotox/agentic-career-advisor" target="_blank" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-medium py-3 px-6 rounded-lg transition-all flex items-center gap-2">
+                <i class="fa-brands fa-github"></i> Source Code
+            </a>
+        </div>
+    </header>
+
+    <!-- INFOGRAPHIC SECTION: THE ARCHITECTURE -->
+    <section id="architecture" class="py-20 px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Αρχιτεκτονική <span class="text-sky-400">Dual-Node</span></h2>
+            <p class="text-slate-400 max-w-2xl mx-auto">Πώς δύο διαφορετικοί Agents συγχρονίζονται σε λιγότερο από 1 δευτερόλεπτο για να αξιολογήσουν και να καθοδηγήσουν τον χρήστη.</p>
+        </div>
+
+        <!-- Flowchart Container -->
+        <div class="relative flex flex-col md:flex-row items-center justify-between gap-6 md:gap-2 glass-card p-8 rounded-2xl">
+            
+            <!-- Step 1: User -->
+            <div class="flex flex-col items-center z-10 w-full md:w-1/4">
+                <div class="w-20 h-20 bg-slate-800 rounded-full flex items-center justify-center border-2 border-slate-600 shadow-lg mb-4">
+                    <i class="fa-solid fa-user text-3xl text-slate-300"></i>
+                </div>
+                <h3 class="text-lg font-bold text-center">Χρήστης</h3>
+                <p class="text-sm text-slate-400 text-center mt-2">Στέλνει απαντήσεις φυσικής γλώσσας (Chat).</p>
+            </div>
+
+            <!-- Arrow 1 -->
+            <div class="hidden md:flex flex-col items-center flow-arrow text-sky-500">
+                <i class="fa-solid fa-arrow-right-long text-3xl"></i>
+            </div>
+            <div class="flex md:hidden text-sky-500 flow-arrow"><i class="fa-solid fa-arrow-down-long text-3xl"></i></div>
+
+            <!-- Step 2: LLM-2 (Evaluator) -->
+            <div class="flex flex-col items-center z-10 w-full md:w-1/4">
+                <div class="w-20 h-20 bg-indigo-900/50 rounded-full flex items-center justify-center border-2 border-indigo-500 shadow-[0_0_20px_rgba(99,102,241,0.3)] mb-4">
+                    <i class="fa-solid fa-brain text-3xl text-indigo-400"></i>
+                </div>
+                <h3 class="text-lg font-bold text-center text-indigo-300">Agent 1: Ο Αξιολογητής</h3>
+                <p class="text-sm text-slate-400 text-center mt-2">Αόρατος. Αναλύει το ιστορικό και εξάγει <strong>JSON</strong> με το ψυχομετρικό προφίλ (~3.5s).</p>
+            </div>
+
+            <!-- Arrow 2 -->
+            <div class="hidden md:flex flex-col items-center flow-arrow text-emerald-500">
+                <span class="text-xs font-bold mb-1">Prompt Injection</span>
+                <i class="fa-solid fa-arrow-right-long text-3xl"></i>
+            </div>
+            <div class="flex md:hidden text-emerald-500 flow-arrow"><i class="fa-solid fa-arrow-down-long text-3xl"></i></div>
+
+            <!-- Step 3: LLM-1 (Advisor) -->
+            <div class="flex flex-col items-center z-10 w-full md:w-1/4">
+                <div class="w-20 h-20 bg-sky-900/50 rounded-full flex items-center justify-center border-2 border-sky-500 shadow-[0_0_20px_rgba(56,189,248,0.3)] mb-4">
+                    <i class="fa-solid fa-robot text-3xl text-sky-400"></i>
+                </div>
+                <h3 class="text-lg font-bold text-center text-sky-300">Agent 2: Ο Σύμβουλος</h3>
+                <p class="text-sm text-slate-400 text-center mt-2">Λαμβάνει τις μυστικές οδηγίες και απαντά στον χρήστη ρεαλιστικά (~0.7s).</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- METRICS & REALITY CHECK SECTION -->
+    <section class="py-16 px-6 lg:px-8 max-w-7xl mx-auto bg-slate-900/50 border-y border-slate-800">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            
+            <div>
+                <h2 class="text-3xl font-bold mb-6">Το <span class="text-indigo-400">"Reality Check"</span> Metric</h2>
+                <p class="text-slate-300 mb-6 text-lg">
+                    Αντί για ένα απλό chatbot που συμφωνεί με τα πάντα, το σύστημα παρακολουθεί δυναμικά το "Χάσμα" μεταξύ ονείρου και προσπάθειας.
+                </p>
+                <ul class="space-y-4">
+                    <li class="flex gap-4">
+                        <div class="mt-1 bg-red-500/20 p-2 rounded flex-shrink-0 h-10 w-10 flex items-center justify-center text-red-400 border border-red-500/30">
+                            <i class="fa-solid fa-gauge-high"></i>
+                        </div>
+                        <div>
+                            <strong class="block text-slate-200">Delusion Level (Δείκτης Ψευδαίσθησης)</strong>
+                            <span class="text-sm text-slate-400">Όσο υψηλότερος ο δείκτης (π.χ. θέλει να γίνει ιατρός αλλά μισεί το διάβασμα), τόσο πιο "αυστηρός" γίνεται ο Agent 2.</span>
+                        </div>
+                    </li>
+                    <li class="flex gap-4">
+                        <div class="mt-1 bg-emerald-500/20 p-2 rounded flex-shrink-0 h-10 w-10 flex items-center justify-center text-emerald-400 border border-emerald-500/30">
+                            <i class="fa-solid fa-dumbbell"></i>
+                        </div>
+                        <div>
+                            <strong class="block text-slate-200">Willingness to Sweat (Προθυμία)</strong>
+                            <span class="text-sm text-slate-400">Μετράει την ανθεκτικότητα και την εργασιακή ηθική βάσει του ιστορικού και των χόμπι του χρήστη.</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- JSON Code Mockup -->
+            <div class="bg-[#0d1117] rounded-xl border border-slate-700 overflow-hidden shadow-2xl">
+                <div class="bg-slate-800 px-4 py-2 border-b border-slate-700 flex items-center gap-2">
+                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    <span class="ml-2 text-xs text-slate-400 font-mono">evaluator_output.json</span>
+                </div>
+                <pre class="p-4 text-sm font-mono text-emerald-400 overflow-x-auto"><code>{
+  "psychometric_profile": {
+    "teamwork_vs_independence": 0.8,
+    "resilience_to_failure": 0.6
+  },
+  "reality_check_metrics": {
+    "stated_dream_job": "Professional Fisherman",
+    "delusion_level": 0.7,
+    "willingness_to_sweat": 0.3
+  },
+  "agent_directives": {
+    "recommended_llm1_stance": "highlight the contrast between idealized fishing and actual labor"
+  }
+}</code></pre>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- UI SHOWCASE -->
+    <section class="py-20 px-6 lg:px-8 max-w-7xl mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-10">Minimal UI, Powerful Backend</h2>
+        
+        <div class="max-w-4xl mx-auto glass-card rounded-2xl p-6 border border-slate-700 shadow-2xl relative">
+            <div class="text-left mb-6 border-b border-slate-700 pb-4">
+                <h3 class="text-xl font-bold">🎓 Ψηφιακός Σύμβουλος</h3>
+            </div>
+            
+            <!-- Chat Mockup based on user's image -->
+            <div class="space-y-6 text-left">
+                <!-- User Msg -->
+                <div class="flex gap-4 items-start justify-end">
+                    <div class="bg-slate-700 text-white p-4 rounded-2xl rounded-tr-sm max-w-[80%]">
+                        να ψαρεύω!!
+                    </div>
+                    <div class="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center flex-shrink-0 text-white">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                </div>
+                
+                <!-- System loading mock -->
+                <div class="flex gap-3 items-center text-sm text-slate-400 pl-14">
+                    <i class="fa-solid fa-circle-notch fa-spin"></i> Γίνεται αξιολόγηση προφίλ στο παρασκήνιο...
+                </div>
+
+                <!-- Assistant Msg -->
+                <div class="flex gap-4 items-start">
+                    <div class="w-10 h-10 rounded-full bg-yellow-500 flex items-center justify-center flex-shrink-0 text-white">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <div class="bg-slate-800 text-slate-200 p-4 rounded-2xl rounded-tl-sm max-w-[80%] border border-slate-700">
+                        Ωραία επιλογή! Αλλά άκουσέ με καλά: το ψάρεμα δεν είναι μόνο να κάθεσαι σε μια βάρκα με το ηλιοβασίλεμα. Θέλει υπομονή, απαιτεί να ξυπνάς πριν τα χαράματα και είναι σκληρή φυσική δουλειά...<br><br>
+                        Ενδιαφέρεσαι περισσότερο για ψάρεμα σε γλυκά νερά ή στην θάλασσα;
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-8 text-center text-slate-500 border-t border-slate-800 mt-10">
+        <p>Σχεδιάστηκε και αναπτύχθηκε ως Proof of Concept για Agentic AI & Local LLMs.</p>
+    </footer>
+
+</body>
+</html>
