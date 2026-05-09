@@ -36,4 +36,4 @@ pip install streamlit openai
 
 ## **📖 Τεκμηρίωση**
 
-Δείτε την πλήρη τεχνική ανάλυση και το διάγραμμα ροής (HLD/LLD) στο [Έγγραφο Σχεδιασμού (Design Document)](http://docs.google.com/career_advisor_design_doc.md) και στο [Live Infographic](https://theotox.github.io/agentic-career-advisor/).
+Δείτε την πλήρη τεχνική ανάλυση και το διάγραμμα ροής (HLD/LLD) στο [Έγγραφο Σχεδιασμού (Design Document)](https://github.com/theotox/agentic-career-advisor/blob/main/career_advisor_design_doc.md) και στο [Live Infographic](https://theotox.github.io/agentic-career-advisor/).
