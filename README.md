@@ -2,6 +2,7 @@
 An Agentic AI Career Advisor using Dual-LLM architecture and local RTX 5090
 
 
+
 **Version 1, DUAL Agent Architecture (app-agentic.py)**
 Η βασική, ελαφριά έκδοση που χρησιμοποιεί ένα (1) ισχυρό μοντέλο (Qwen 3.6 35B) για να εξυπηρετήσει δύο ρόλους:
 
@@ -10,6 +11,7 @@ Agent 1 (Evaluator): Αναλύει το ιστορικό στο παρασκή�
 Agent 2 (Advisor): Παίρνει μυστικές οδηγίες και απαντά στον χρήστη (Streaming).
 
 Απαιτήσεις: 1 x LLM Server (συνιστάται RTX 5090).
+
 
 
 **Version 2, TRIPLE Triple-Agent Architecture (app-agentic-greek.py)**
