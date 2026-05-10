@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agentic AI Career Advisor - Αρχιτεκτονική & Σχεδιασμός</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+body { font-family: 'Inter', sans-serif; background-color: #FAF9F6; color: #333333; }
+.glass-panel { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(0, 0, 0, 0.05); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); }
+.nav-link { transition: all 0.2s ease-in-out; }
+.nav-link:hover { color: #4A90E2; }
+.tab-active { background-color: #4A90E2; color: white; }
+.tab-inactive { background-color: #E5E7EB; color: #4B5563; }
+.tab-inactive:hover { background-color: #D1D5DB; }
+.chart-container { position: relative; width: 100%; max-width: 800px; margin-left: auto; margin-right: auto; height: 350px; max-height: 400px; }
+@media (min-width: 768px) { .chart-container { height: 400px; } }
+</style>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#4A90E2',
+secondary: '#50E3C2',
+accent: '#F5A623',
+neutral: '#FAF9F6',
+dark: '#333333'
+}
+}
+}
+}
+</script>
+</head>
+<body class="antialiased overflow-x-hidden selection:bg-primary selection:text-white">
+
+<nav class="fixed w-full z-50 glass-panel border-b border-gray-200">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between h-16 items-center">
+<div class="flex-shrink-0 flex items-center gap-2">
+<span class="text-2xl">🎓</span>
+<span class="font-bold text-xl tracking-tight text-dark">Agentic<span class="text-primary">Career</span></span>
+</div>
+<div class="hidden md:flex space-x-6 items-center">
+<a href="#intro" class="nav-link text-sm font-semibold text-gray-700">Υποδομές</a>
+<a href="#architecture" class="nav-link text-sm font-semibold text-gray-700">Αρχιτεκτονική</a>
+<a href="#evaluation" class="nav-link text-sm font-semibold text-gray-700">State Tracking</a>
+<a href="#implementation" class="nav-link text-sm font-semibold text-gray-700">Υλοποίηση</a>
+<!-- ΝΕΟ: Link προς την Αξιολόγηση στο Μενού -->
+<a href="evaluation.html" class="nav-link text-sm font-bold text-[#4A90E2] ml-2 hover:underline">PoC vs Enterprise</a>
+<a href="https://github.com/theotox/agentic-career-advisor" target="_blank" class="ml-2 px-4 py-2 rounded-full bg-[#24292e] text-white text-sm font-bold hover:bg-gray-700 transition-colors shadow-sm">
+    📂 GitHub Repo
+</a>
+</div>
+</div>
+</div>
+</nav>
+
+<div class="pt-24 pb-12 sm:pt-32 sm:pb-16 lg:pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+<h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-dark tracking-tight mb-6">
+Ψηφιακός Σύμβουλος <span class="text-primary">Σταδιοδρομίας</span>
+</h1>
+<p class="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
+Διαδραστική ανάλυση του εγχειριδίου σχεδιασμού (Έκδοση 2.0). Εξερευνήστε την αρχιτεκτονική Triple-Agent, τους μηχανισμούς αξιολόγησης και τις τεχνικές προδιαγραφές του συστήματος.
+</p>
+</div>
+
+<section id="intro" class="py-12 bg-white border-y border-gray-200">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="mb-10 max-w-3xl">
+<h2 class="text-3xl font-bold text-dark mb-4">Εισαγωγή & Περιβάλλον Εκτέλεσης</h2>
+<p class="text-gray-600 text-lg">
+Η ενότητα αυτή παρουσιάζει τη θεμελιώδη υποδομή που επιτρέπει στο σύστημα να λειτουργεί σε πραγματικό χρόνο. Το Agentic AI απαιτεί κορυφαίο υλικό για την ελαχιστοποίηση του latency. Εδώ συνοψίζονται οι πόροι που εξασφαλίζουν ταχύτατη απόκριση (κάτω του 1 δευτερολέπτου) κατά τη λειτουργία της αρχιτεκτονικής.
+</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="glass-panel p-6 rounded-2xl flex flex-col items-center text-center">
+<div class="text-4xl mb-4">🖥️</div>
+<h3 class="text-xl font-bold mb-2">Hardware</h3>
+<p class="text-gray-600">Υπολογιστική ισχύς βασισμένη σε κάρτα γραφικών <strong>NVIDIA RTX 5090</strong> για υποστήριξη βαρέως φορτίου.</p>
+</div>
+<div class="glass-panel p-6 rounded-2xl flex flex-col items-center text-center">
+<div class="text-4xl mb-4">🧠</div>
+<h3 class="text-xl font-bold mb-2">Κύριο Μοντέλο</h3>
+<p class="text-gray-600"><strong>Qwen 3.6 35B</strong> (Quantized 5-bit, abliterated με χαρακτηριστικά Claude 4.7 Opus) με 110K context size.</p>
+</div>
+<div class="glass-panel p-6 rounded-2xl flex flex-col items-center text-center">
+<div class="text-4xl mb-4">⚡</div>
+<h3 class="text-xl font-bold mb-2">Απόδοση</h3>
+<p class="text-gray-600">Inference latency <strong>&lt; 1s</strong> χάρη στο Flash Attention και 8-bit cache (q8_0) στο llama.cpp.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="architecture" class="py-16 bg-[#FAF9F6]">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="mb-10 max-w-3xl">
+<h2 class="text-3xl font-bold text-dark mb-4">Αρχιτεκτονική του Προγράμματος (HLD)</h2>
+<p class="text-gray-600 text-lg">
+Εξερευνήστε την εξέλιξη του συστήματος από μια παραδοσιακή μονολιθική δομή στη σύγχρονη προσέγγιση πολλαπλών πρακτόρων (Multi-Node Agentic Architecture). Κάντε κλικ στις παρακάτω καρτέλες για να δείτε πώς ο διαχωρισμός των ρόλων έλυσε προβλήματα φλυαρίας και βελτίωσε την ποιότητα της γλώσσας.
+</p>
+</div>
+
+<div class="flex flex-wrap gap-2 justify-center mb-8">
+<button id="tab-mono" class="px-6 py-3 rounded-full font-bold text-sm tab-inactive" onclick="switchTab('mono')">Μονολιθική (Deprecated)</button>
+<button id="tab-dual" class="px-6 py-3 rounded-full font-bold text-sm tab-inactive" onclick="switchTab('dual')">Dual-Agent (v1.0)</button>
+<button id="tab-triple" class="px-6 py-3 rounded-full font-bold text-sm tab-active" onclick="switchTab('triple')">Triple-Agent (v2.0)</button>
+</div>
+
+<div class="glass-panel rounded-3xl p-8 min-h-[400px] flex items-center justify-center">
+<div id="content-mono" class="hidden w-full flex-col items-center text-center">
+<div class="bg-red-100 border border-red-300 text-red-800 p-6 rounded-xl w-full max-w-md shadow-sm mb-6">
+<div class="text-3xl mb-2">🤖</div>
+<h4 class="font-bold text-xl mb-2">Ένα LLM για Όλα</h4>
+<p class="text-sm">Το μοντέλο αναλαμβάνει την αξιολόγηση, τη στρατηγική και την επικοινωνία ταυτόχρονα.</p>
+</div>
+<div class="bg-gray-100 p-4 rounded-lg max-w-lg text-sm text-gray-700">
+<strong>Πρόβλημα:</strong> Το LLM γινόταν "φλύαρο", έχανε τον ειρμό του και δυσκολευόταν να διατηρήσει μια στρατηγική πορεία προς την τελική συμβουλή.
+</div>
+</div>
+
+<div id="content-dual" class="hidden w-full flex-col items-center text-center">
+<div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 w-full max-w-3xl mb-6">
+<div class="bg-indigo-100 border border-indigo-300 text-indigo-900 p-6 rounded-xl w-full flex-1 shadow-sm relative">
+<div class="text-3xl mb-2">🕵️</div>
+<h4 class="font-bold text-lg mb-2">Agent 1: Αξιολογητής</h4>
+<p class="text-xs">Qwen 35B (Backend). Διαβάζει το ιστορικό και εξάγει JSON με metrics.</p>
+</div>
+<div class="text-2xl text-gray-400 rotate-90 md:rotate-0">➔</div>
+<div class="bg-blue-100 border border-blue-300 text-blue-900 p-6 rounded-xl w-full flex-1 shadow-sm relative">
+<div class="text-3xl mb-2">💬</div>
+<h4 class="font-bold text-lg mb-2">Agent 2: Σύμβουλος</h4>
+<p class="text-xs">Qwen 35B (Frontend). Λαμβάνει οδηγίες (Prompt Injection) και απαντά στον χρήστη.</p>
+</div>
+</div>
+<div class="bg-gray-100 p-4 rounded-lg max-w-lg text-sm text-gray-700">
+<strong>Λύση:</strong> Διάσπαση ρόλων. Ο αξιολογητής λειτουργεί στο παρασκήνιο.
+</div>
+</div>
+
+<div id="content-triple" class="w-full flex-col items-center text-center flex">
+<div class="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 w-full max-w-4xl mb-6">
+<div class="bg-indigo-100 border border-indigo-300 text-indigo-900 p-4 rounded-xl w-full flex-1 shadow-sm">
+<div class="text-2xl mb-1">🕵️</div>
+<h4 class="font-bold text-sm mb-1">Agent 1: Αξιολογητής</h4>
+<p class="text-[11px]">Qwen 35B (Backend)<br>Ψυχομετρική Ανάλυση</p>
+</div>
+<div class="text-xl text-gray-400 rotate-90 md:rotate-0">➔</div>
+<div class="bg-blue-100 border border-blue-300 text-blue-900 p-4 rounded-xl w-full flex-1 shadow-sm">
+<div class="text-2xl mb-1">📝</div>
+<h4 class="font-bold text-sm mb-1">Agent 2: Σύμβουλος</h4>
+<p class="text-[11px]">Qwen 35B (Backend)<br>Προσχέδιο (Χωρίς Stream)</p>
+</div>
+<div class="text-xl text-gray-400 rotate-90 md:rotate-0">➔</div>
+<div class="bg-teal-100 border border-teal-300 text-teal-900 p-4 rounded-xl w-full flex-1 shadow-sm border-2 border-dashed border-teal-500">
+<div class="text-2xl mb-1">✍️</div>
+<h4 class="font-bold text-sm mb-1">Agent 3: Επιμελητής</h4>
+<p class="text-[11px]">KriKri 8B (Frontend)<br>Διόρθωση & Streaming Ελληνικών</p>
+</div>
+</div>
+<div class="bg-teal-50 p-4 rounded-lg max-w-2xl text-sm text-gray-700 border border-teal-200">
+<strong>Προηγμένη Λύση (Editor Pattern):</strong> Για την επίλυση συντακτικών λαθών στην ελληνική γλώσσα, το προσχέδιο περνάει από το εξειδικευμένο μοντέλο KriKri 8B με αυστηρούς αρνητικούς περιορισμούς, προσφέροντας μια πολύ υψηλή γλωσσική εμπειρία.
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="evaluation" class="py-16 bg-white border-t border-gray-200">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="mb-10 max-w-3xl">
+<h2 class="text-3xl font-bold text-dark mb-4">Μηχανισμός Αξιολόγησης (State Tracking)</h2>
+<p class="text-gray-600 text-lg">
+Αυτή η ενότητα οπτικοποιεί τα δεδομένα που παρακολουθεί αθέατα ο Αξιολογητής (Agent 1) κατά τη διάρκεια της συνομιλίας. Το σύστημα αναλύει το κείμενο του χρήστη σε πραγματικό χρόνο εξάγοντας ψυχομετρικές μετρήσεις, ενδιαφέροντα και το κρίσιμο "Χάσμα" μεταξύ στόχου και προσπάθειας.
+</p>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+<div>
+<h3 class="text-2xl font-bold mb-4 flex items-center gap-2"><span class="text-primary">01.</span> Επαγγελματικά Ενδιαφέροντα</h3>
+<p class="text-gray-600 mb-4">Το σύστημα αποκωδικοποιεί τις συζητήσεις χρησιμοποιώντας το μοντέλο <strong>RIASEC (Holland Codes)</strong>. Βαθμολογεί την κλίση του χρήστη σε 6 άξονες χωρίς να κάνει ευθείες ερωτήσεις.</p>
+<ul class="space-y-2 text-sm text-gray-600">
+<li>• <strong>R</strong>ealistic (Πρακτικός)</li>
+<li>• <strong>I</strong>nvestigative (Ερευνητικός)</li>
+<li>• <strong>A</strong>rtistic (Καλλιτεχνικός)</li>
+<li>• <strong>S</strong>ocial (Κοινωνικός)</li>
+<li>• <strong>E</strong>nterprising (Επιχειρηματικός)</li>
+<li>• <strong>C</strong>onventional (Συμβατικός)</li>
+</ul>
+</div>
+<div class="glass-panel p-4 rounded-2xl w-full">
+<div class="chart-container">
+<canvas id="riasecChart"></canvas>
+</div>
+</div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="order-2 lg:order-1 glass-panel p-4 rounded-2xl w-full">
+<div class="chart-container">
+<canvas id="realityChart"></canvas>
+</div>
+</div>
+<div class="order-1 lg:order-2">
+<h3 class="text-2xl font-bold mb-4 flex items-center gap-2"><span class="text-accent">02.</span> Reality Check Metrics</h3>
+<p class="text-gray-600 mb-4">Η κρισιμότερη καινοτομία. Το σύστημα καταγράφει τον επαγγελματικό "Στόχο" και τα ακαδημαϊκά κενά, εξάγοντας δύο δείκτες που καθορίζουν τη στάση του Συμβούλου.</p>
+<div class="space-y-4">
+<div class="bg-orange-50 p-4 rounded-lg border border-orange-200">
+<h4 class="font-bold text-orange-800">Delusion Level (Επίπεδο Ψευδαίσθησης)</h4>
+<p class="text-sm text-orange-700 mt-1">Μετράει το χάσμα μεταξύ της επιθυμίας και της πραγματικότητας. Υψηλός δείκτης ενεργοποιεί αυστηρές απαντήσεις.</p>
+</div>
+<div class="bg-emerald-50 p-4 rounded-lg border border-emerald-200">
+<h4 class="font-bold text-emerald-800">Willingness to Sweat (Προθυμία)</h4>
+<p class="text-sm text-emerald-700 mt-1">Μετράει την εργασιακή ηθική και την ανθεκτικότητα βάσει του ιστορικού και των χόμπι.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="implementation" class="py-16 bg-[#FAF9F6] border-t border-gray-200">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="mb-10 text-center max-w-3xl mx-auto">
+<h2 class="text-3xl font-bold text-dark mb-4">Λεπτομέρειες Υλοποίησης (LLD)</h2>
+<p class="text-gray-600 text-lg">
+Η ενότητα κώδικα (LLD) αναλύει πώς επιτυγχάνεται η λειτουργικότητα του Agentic Flow αποκλειστικά με Python 3, Streamlit και OpenAI API, χωρίς εξωτερικά orchestration frameworks.
+</p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="glass-panel p-8 rounded-2xl border-l-4 border-primary">
+<h3 class="text-xl font-bold mb-3 flex items-center gap-2">⚙️ Δομή Χωρίς Frameworks</h3>
+<p class="text-gray-600 text-sm">
+Σε αντίθεση με βιομηχανικά πρότυπα που χρησιμοποιούν LangChain ή LangGraph, το σύστημα πετυχαίνει Agentic ροή Natively μέσω Python και Session State του Streamlit. Αυτό προσφέρει μηδενικό overhead, απόλυτο έλεγχο δεδομένων και μέγιστη ταχύτητα εκτέλεσης.
+</p>
+</div>
+<div class="glass-panel p-8 rounded-2xl border-l-4 border-secondary">
+<h3 class="text-xl font-bold mb-3 flex items-center gap-2">💉 Dynamic Prompt Injection</h3>
+<p class="text-gray-600 text-sm">
+Ο Αξιολογητής παράγει JSON. Ο κώδικας επικαιροποιεί το πρώτο μήνυμα (System Prompt) του Συμβούλου, προσθέτοντας μυστικές οδηγίες. Το τροποποιημένο μήνυμα απορρίπτεται μετά τη χρήση για αποφυγή context pollution.
+</p>
+</div>
+<div class="glass-panel p-8 rounded-2xl border-l-4 border-accent md:col-span-2">
+<h3 class="text-xl font-bold mb-3 flex items-center gap-2">🛡️ Fallback & Logging</h3>
+<p class="text-gray-600 text-sm">
+Εάν ο server του KriKri 8B τεθεί εκτός, ένα `try/except` block προωθεί το ακατέργαστο κείμενο του Qwen στον χρήστη, εξασφαλίζοντας uptime. Όλα τα JSON payloads και οι χρόνοι απόκρισης καταγράφονται μέσω της βιβλιοθήκης `logging` της Python, προσβάσιμα και από In-App Debug Panel.
+</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ΝΕΟ: Call to Action (CTA) Section προς την Αξιολόγηση -->
+<section class="py-20 bg-white border-t border-gray-200 text-center relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#F0F7FF] opacity-50"></div>
+<div class="max-w-4xl mx-auto px-4 relative z-10">
+<h2 class="text-3xl md:text-4xl font-extrabold text-dark mb-4">Από το PoC στην Παραγωγή</h2>
+<p class="text-gray-600 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
+Πώς μπορεί αυτή η αρχιτεκτονική να κλιμακωθεί; Ποια είναι τα δυνατά της σημεία και ποια τα κενά για να γίνει ένα έτοιμο Enterprise προϊόν; Δείτε την ειλικρινή, τεχνική αξιολόγηση του συστήματος.
+</p>
+<a href="evaluation.html" class="inline-flex items-center gap-3 bg-[#4A90E2] text-white font-bold py-4 px-8 rounded-full hover:bg-blue-600 transition-all shadow-[0_4px_14px_0_rgba(74,144,226,0.39)] hover:shadow-[0_6px_20px_rgba(74,144,226,0.23)] hover:-translate-y-1">
+    <span>Διαβάστε την Αξιολόγηση Έργου</span>
+    <span class="text-xl">→</span>
+</a>
+</div>
+</section>
+
+<footer class="bg-dark py-8 text-center text-gray-400 relative z-10">
+<div class="max-w-7xl mx-auto px-4">
+<p class="text-sm">Agentic AI Career Advisor - Document Architecture SPA. Σχεδιασμένο με Tailwind CSS & Chart.js.</p>
+</div>
+</footer>
+
+<script>
+const switchTab = (tabId) => {
+document.getElementById('tab-mono').className = 'px-6 py-3 rounded-full font-bold text-sm tab-inactive';
+document.getElementById('tab-dual').className = 'px-6 py-3 rounded-full font-bold text-sm tab-inactive';
+document.getElementById('tab-triple').className = 'px-6 py-3 rounded-full font-bold text-sm tab-inactive';
+
+document.getElementById('content-mono').style.display = 'none';
+document.getElementById('content-dual').style.display = 'none';
+document.getElementById('content-triple').style.display = 'none';
+
+document.getElementById(`tab-${tabId}`).className = 'px-6 py-3 rounded-full font-bold text-sm tab-active';
+document.getElementById(`content-${tabId}`).style.display = 'flex';
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+switchTab('triple');
+
+const ctxRiasec = document.getElementById('riasecChart').getContext('2d');
+new Chart(ctxRiasec, {
+type: 'radar',
+data: {
+labels: ['Realistic', 'Investigative', 'Artistic', 'Social', 'Enterprising', 'Conventional'],
+datasets: [{
+label: 'Εκτίμηση Χρήστη (Sample)',
+data: [0.8, 0.4, 0.2, 0.3, 0.5, 0.7],
+backgroundColor: 'rgba(74, 144, 226, 0.2)',
+borderColor: 'rgba(74, 144, 226, 1)',
+pointBackgroundColor: 'rgba(74, 144, 226, 1)',
+pointBorderColor: '#fff',
+pointHoverBackgroundColor: '#fff',
+pointHoverBorderColor: 'rgba(74, 144, 226, 1)',
+borderWidth: 2
+}]
+},
+options: {
+responsive: true,
+maintainAspectRatio: false,
+scales: {
+r: {
+angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
+grid: { color: 'rgba(0, 0, 0, 0.1)' },
+pointLabels: { font: { family: 'Inter', size: 12 }, color: '#4B5563' },
+ticks: { display: false, min: 0, max: 1 }
+}
+},
+plugins: {
+legend: { position: 'bottom', labels: { font: { family: 'Inter' } } },
+tooltip: {
+callbacks: {
+label: function(context) {
+let label = context.dataset.label || '';
+if (label) { label += ': '; }
+if (context.parsed.r !== null) { label += (context.parsed.r * 10).toFixed(1) + '/10'; }
+return label;
+}
+}
+}
+}
+}
+});
+
+const ctxReality = document.getElementById('realityChart').getContext('2d');
+new Chart(ctxReality, {
+type: 'bar',
+data: {
+labels: ['Delusion Level', 'Willingness to Sweat', 'Conscientiousness', 'Resilience'],
+datasets: [{
+label: 'Αξιολόγηση State Tracking (1-10)',
+data: [7.5, 4.0, 5.5, 6.0],
+backgroundColor: [
+'rgba(245, 166, 35, 0.8)',
+'rgba(80, 227, 194, 0.8)',
+'rgba(74, 144, 226, 0.8)',
+'rgba(156, 163, 175, 0.8)'
+],
+borderRadius: 6
+}]
+},
+options: {
+responsive: true,
+maintainAspectRatio: false,
+scales: {
+y: { beginAtZero: true, max: 10, grid: { color: 'rgba(0, 0, 0, 0.05)' }, ticks: { font: { family: 'Inter' } } },
+x: { grid: { display: false }, ticks: { font: { family: 'Inter' }, maxRotation: 45, minRotation: 45 } }
+},
+plugins: {
+legend: { display: false },
+tooltip: {
+callbacks: {
+title: function(context) {
+const label = context[0].label;
+if(label.length > 16) return label.match(/.{1,16}(\s|$)/g);
+return label;
+}
+}
+}
+}
+}
+});
+});
+</script>
+</body>
+</html>
