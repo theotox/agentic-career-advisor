@@ -8,15 +8,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Chosen Palette: Warm Neutrals with Indigo and Teal Accents (Background: #FAF9F6 / stone-50, Text: slate-800, Primary: indigo-600, Secondary: teal-600) -->
-    <!-- Application Structure Plan: The SPA is designed as an interactive executive summary and technical dashboard. It transitions the text-heavy markdown evaluation into a visual story. It is divided into three functional areas: 1) Executive Summary (Hero), 2) Architectural Strengths (Interactive HTML Node flow replacing bullet points), and 3) Enterprise Readiness Gap Analysis (Interactive Radar Chart and detailed upgrade cards). This structure allows stakeholders to immediately grasp the PoC's value, visually explore its underlying mechanics, and clearly understand the roadmap to a production-ready SaaS. -->
-    <!-- Visualization & Content Choices: 
-        1. Architecture/Strengths -> Goal: Organize/Inform -> Interactive HTML/CSS Node Diagram (NO SVG/Mermaid) -> Clickable nodes reveal details. Justification: Clearly illustrates the "Triple-Agent Pipeline" and "No-Framework" flow better than static text.
-        2. Enterprise Readiness Gap -> Goal: Compare -> Radar Chart (Chart.js) -> Maps current PoC metrics vs. Target Enterprise metrics. Justification: A radar chart is optimal for multi-variable gap analysis (Scalability, Security, State, etc.).
-        3. Upgrade Requirements -> Goal: Inform/Organize -> Interactive Grid Cards -> Hovering/clicking aligns with the radar chart axes to show detailed steps (DBs, vLLM, etc.). 
-        Confirmed NO SVG and NO Mermaid. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -85,7 +76,12 @@
                     <div class="w-8 h-8 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-bold text-xl">A</div>
                     <span class="font-bold text-xl tracking-tight text-slate-800">Agentic<span class="text-indigo-600">Advisor</span></span>
                 </div>
-                <div class="hidden md:flex space-x-8">
+                <div class="hidden md:flex space-x-6 items-center">
+                    <!-- ΝΕΟ: Κουμπί Επιστροφής (Back) -->
+                    <a href="index.html" class="text-sm font-bold text-indigo-600 flex items-center gap-1 hover:text-indigo-800 transition-colors mr-4 border-r border-slate-300 pr-6">
+                        <span class="text-lg leading-none">&larr;</span> Πίσω στην Παρουσίαση
+                    </a>
+                    
                     <a href="#overview" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">Επισκόπηση</a>
                     <a href="#strengths" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">Δυνατά Σημεία</a>
                     <a href="#enterprise" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">Enterprise Roadmap</a>
@@ -379,8 +375,6 @@
         // Hover effect to highlight chart specific axis
         function highlightChartAxis(index) {
             if(!radarChart) return;
-            // Native ChartJS doesn't easily support highlighting a single axis line,
-            // but we can trigger a tooltip for the 'PoC' dataset on that specific axis.
             const meta = radarChart.getDatasetMeta(0);
             if(meta && meta.data[index]) {
                 radarChart.setActiveElements([{
